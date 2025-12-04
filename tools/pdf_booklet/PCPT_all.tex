@@ -1,0 +1,83 @@
+\documentclass[a4paper,11pt,twoside]{article}
+\renewcommand{\familydefault}{\sfdefault}      % sans serif font
+
+% -------------------------------------------------
+% Packages
+% -------------------------------------------------
+\usepackage{lmodern}        
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pdfpages}      	% For including PDF pages
+\usepackage{fancyhdr}      	% For page numbering style
+\usepackage{geometry}      	% For page margins
+\usepackage{graphicx}      	% For including logos
+\usepackage{tocloft}        % For table of contents
+\usepackage{hyperref}      	% For clickable table of contents
+
+% -------------------------------------------------
+% Page setup
+% -------------------------------------------------
+% Load current version number
+\newcommand{\version}{\input{../../VERSION}}
+
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Set header and footer
+\geometry{margin=2.5cm}
+\fancyhf{} 				   			% Clear all header and footer fields
+\fancyhead[LE, RO]{\thepage}		% Outer edges: page number
+\fancyhead[RE]{PCPT}				% Even pages, inner side
+\fancyhead[LO]{\rightmark}  		% Odd pages, inner side: section title
+
+% TOC dots for sections
+\renewcommand{\cftdotsep}{3}		% Adjust spacing between dots
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% -------------------------------------------------
+% Makro for including pdfs 
+% -------------------------------------------------
+\newcommand{\pdfsection}[3]{%
+	\pagestyle{empty}
+  	\cleardoublepage
+  	\pagestyle{fancy}
+  	\includepdf[pages=-,pagecommand=\thispagestyle{fancy},addtotoc={1,section,1,#1,#2}]{#3}%
+}
+
+% -------------------------------------------------
+% Document
+% -------------------------------------------------
+\begin{document}
+
+% ---------------- Title Page ----------------
+\input{titlepage}
+\pagestyle{empty}
+\newpage
+
+% ---------------- Table of Contents ----------------
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\renewcommand{\contentsname}{\sffamily Contents \\}
+
+\sffamily\tableofcontents
+\pagestyle{empty}
+\newpage
+
+% ---------------- Include PDFs ----------------
+\setcounter{section}{-1}
+
+\pdfsection{Introduction}{intro}{../../PCPT.pdf}
+\pdfsection{Get Started}{getstarted}{../../PCPT_01_getstarted.pdf}
+\pdfsection{Python Classes}{classes}{../../PCPT_02_classes.pdf}
+\pdfsection{PyTorch Tensors}{tensor}{../../PCPT_03_tensor.pdf}
+\pdfsection{Automatic Differentiation}{grad}{../../PCPT_04_grad.pdf}
+\pdfsection{Neural Network Modules}{nn}{../../PCPT_05_nn.pdf}
+\pdfsection{Convolution and CNNs}{convolution}{../../PCPT_06_convolution.pdf}
+\pdfsection{Classification}{classification}{../../PCPT_07_classification.pdf}
+\pdfsection{Training Dynamics}{training}{../../PCPT_08_training.pdf}
+\pdfsection{Recursion and RNNs}{recursion}{../../PCPT_09_recursion.pdf}
+\pdfsection{Further Essential Techniques}{essential}{../../PCPT_10_essential.pdf}
+
+\end{document}

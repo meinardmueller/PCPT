@@ -1,0 +1,11 @@
+@article{MuellerZS25_PCPT_JOSE,
+  author    = {Meinard M{\"u}ller and Johannes Zeitler and Sebastian Strahl},
+  title     = {{PCPT} Notebooks: {A} Preparation Course for {P}y{T}orch},
+  journal   = {Journal of Open Source Education ({JOSE})},
+  volume    = {},
+  number    = {},
+  year      = {2025},
+  pages     = {},
+  doi       = {},
+  url-demo = {}
+}

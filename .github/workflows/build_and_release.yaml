@@ -1,0 +1,52 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version
+        id: get_version
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12" 
+
+      - name: Install dependencies
+        run: |
+          pip install jupyter nbconvert[webpdf]
+          playwright install chromium
+
+      - name: Build HTML and PDF notebooks
+        run: python tools/run_and_export_notebooks.py --no-clean --no-run   
+
+      - name: Create merged PDF using LaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: PCPT_all.tex
+          working_directory: tools/pdf_booklet
+
+      - name: Create zip file          
+        run: |
+          cp tools/pdf_booklet/PCPT_all.pdf ./PCPT_all.pdf
+          ZIP_NAME="PCPT_${{ steps.get_version.outputs.version }}.zip"
+          zip "$ZIP_NAME" -@ < <(git ls-files; ls *.html; ls *.pdf)
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: PCPT_${{ steps.get_version.outputs.version }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

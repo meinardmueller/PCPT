@@ -1,0 +1,25 @@
+# HTML and PDF files
+*.html
+*.pdf
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints
+
+# Bytecode files
+__pycache__/
+
+# Intermediate LaTeX files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.loa
+*.lof
+*.lot
+*.toc
+*.bak
+*.dvi
+*.ps
+*.auxlock

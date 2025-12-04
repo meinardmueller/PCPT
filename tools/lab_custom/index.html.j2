@@ -1,0 +1,98 @@
+{% extends 'lab/index.html.j2' %}
+
+{% block header %}
+{{ super() }}
+<style type="text/css">
+    /* General text and code font size */
+    body, .jp-RenderedText, pre, code {
+        font-size: 8.5pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Cell outputs */
+    .jp-CodeCell .jp-InputArea-editor, 
+    .jp-RenderedHTMLCommon, 
+    .jp-Notebook .jp-Cell, 
+    .jp-OutputArea-output pre {
+        font-size: 8.5pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Markdown cells */
+    .jp-MarkdownCell .jp-RenderedHTMLCommon {
+        font-size: 9pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Adjust table fontsize and spacing */
+    table,
+    .jp-RenderedHTMLCommon table,
+    .jp-RenderedHTMLCommon td,
+    .jp-RenderedHTMLCommon th,
+    .dataframe,
+    .dataframe td,
+    .dataframe th {
+        font-size: 9pt !important;    
+        line-height: 1.2 !important;    /* tighter spacing */
+        text-align: left !important;
+        vertical-align: middle !important;
+    }
+
+    /* Header font sizes */
+    .jp-RenderedHTMLCommon h1 { font-size: 18pt !important; }
+    .jp-RenderedHTMLCommon h2 { font-size: 14pt !important; }
+    .jp-RenderedHTMLCommon h3 { font-size: 12pt !important; }
+    .jp-RenderedHTMLCommon h4,
+    .jp-RenderedHTMLCommon h5,
+    .jp-RenderedHTMLCommon h6 {
+        font-size: 11pt !important;
+    }
+
+    /* Make headers bold and set margins*/
+    .jp-RenderedHTMLCommon h1,
+    .jp-RenderedHTMLCommon h2,
+    .jp-RenderedHTMLCommon h3,
+    .jp-RenderedHTMLCommon h4,
+    .jp-RenderedHTMLCommon h5,
+    .jp-RenderedHTMLCommon h6 {
+        font-weight: 600 !important;
+        margin-top: 0.5em !important;
+        margin-bottom: 0.5em !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Reduce page margins for PDF export */
+    @page {
+        margin-top: 1.5cm;
+        margin-right: 1.5cm;
+        margin-bottom: 1.5cm;
+        margin-left: 0.5cm;
+    }
+
+    /* Reduce padding inside notebook container */
+    .jp-Notebook {
+        padding-left: 0.0cm !important;
+        padding-right: 0.0cm !important;
+    }
+
+    /* Also remove some spacing around cells */
+    .jp-Cell {
+        margin-left: 0.0cm !important;
+        margin-right: 0.0cm !important;
+    }
+
+    /* Remove cell margins and paddings */
+    .jp-RenderedHTMLCommon {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* Small margin for cell outputs */
+    .jp-RenderedText {
+        padding-left: 20px !important;
+    }
+</style>
+{% endblock header %}
