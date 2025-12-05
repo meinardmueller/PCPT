@@ -1,7 +1,3 @@
-# HTML and PDF files
-*.html
-*.pdf
-
 # Jupyter notebook checkpoints
 .ipynb_checkpoints
 
