@@ -3,25 +3,24 @@
 {% block header %}
 {{ super() }}
 <style type="text/css">
-    /* General text and code font size */
-    body, .jp-RenderedText, pre, code {
+    /* Prose content */
+    body,
+    .jp-RenderedHTMLCommon {
+        font-size: 10.5pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Code / Consolas content */
+    pre, code, tt,
+    .jp-RenderedText,
+    .jp-CodeCell .jp-InputArea-editor {
         font-size: 8.5pt !important;
         line-height: 1.5 !important;
     }
 
-    /* Cell outputs */
-    .jp-CodeCell .jp-InputArea-editor, 
-    .jp-RenderedHTMLCommon, 
-    .jp-Notebook .jp-Cell, 
-    .jp-OutputArea-output pre {
-        font-size: 8.5pt !important;
-        line-height: 1.5 !important;
-    }
-
-    /* Markdown cells */
+    /* Tighter line height for markdown cells */
     .jp-MarkdownCell .jp-RenderedHTMLCommon {
-        font-size: 9pt !important;
-        line-height: 1.5 !important;
+        line-height: 1.2 !important;
     }
 
     /* Adjust table fontsize and spacing */
@@ -39,13 +38,13 @@
     }
 
     /* Header font sizes */
-    .jp-RenderedHTMLCommon h1 { font-size: 18pt !important; }
-    .jp-RenderedHTMLCommon h2 { font-size: 14pt !important; }
-    .jp-RenderedHTMLCommon h3 { font-size: 12pt !important; }
+    .jp-RenderedHTMLCommon h1 { font-size: 20pt !important; }
+    .jp-RenderedHTMLCommon h2 { font-size: 18pt !important; }
+    .jp-RenderedHTMLCommon h3 { font-size: 14pt !important; }
     .jp-RenderedHTMLCommon h4,
     .jp-RenderedHTMLCommon h5,
     .jp-RenderedHTMLCommon h6 {
-        font-size: 11pt !important;
+        font-size: 12pt !important;
     }
 
     /* Make headers bold and set margins*/
@@ -55,30 +54,30 @@
     .jp-RenderedHTMLCommon h4,
     .jp-RenderedHTMLCommon h5,
     .jp-RenderedHTMLCommon h6 {
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         margin-top: 0.5em !important;
         margin-bottom: 0.5em !important;
-        line-height: 1.2 !important;
+        line-height: 1.0 !important;
     }
 
-    /* Reduce page margins for PDF export */
+    /* Set page margins for PDF export */
     @page {
-        margin-top: 1.5cm;
-        margin-right: 1.5cm;
-        margin-bottom: 1.5cm;
-        margin-left: 0.5cm;
+        margin-top: 2.0cm;
+        margin-right: 2.6cm;
+        margin-bottom: 1.3cm;
+        margin-left: 2.6cm;
     }
 
     /* Reduce padding inside notebook container */
     .jp-Notebook {
-        padding-left: 0.0cm !important;
-        padding-right: 0.0cm !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
     /* Also remove some spacing around cells */
     .jp-Cell {
-        margin-left: 0.0cm !important;
-        margin-right: 0.0cm !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     /* Remove cell margins and paddings */
@@ -93,6 +92,39 @@
     /* Small margin for cell outputs */
     .jp-RenderedText {
         padding-left: 20px !important;
+    }
+
+    /* Hide code cell numbers (execution counts) */
+    .jp-InputPrompt,
+    .jp-OutputPrompt,
+    .jp-InputArea-prompt,
+    .jp-OutputArea-prompt {
+        display: none !important;
+    }
+
+    /* Main font */
+    body,
+    .jp-RenderedHTMLCommon {
+        font-family: "Constantia", serif !important;
+        text-align: justify !important;
+        text-justify: inter-word;
+    }
+
+    /* Improve word breaking */
+    p {
+        text-align: justify !important;
+        hyphens: auto;
+    }
+
+    /* Keep headings left-aligned */
+    h1, h2, h3, h4 {
+        text-align: left !important;
+    }
+
+    /* Keep code blocks non-justified */
+    pre, code, tt {
+        font-family: Consolas, monospace !important;
+        text-align: left !important;
     }
 </style>
 {% endblock header %}

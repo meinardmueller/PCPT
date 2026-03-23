@@ -19,12 +19,26 @@ jobs:
         id: get_version
         run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
+      - name: Download font
+        run: |
+          curl -L \
+            -H "Authorization: Bearer ${{ secrets.FONT_REPO_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/sstrahl/constantia-assets/contents/constantia_fonts.zip \
+            | jq -r .content | base64 -d > fonts.zip
+
+          unzip fonts.zip
+          mkdir -p ~/.local/share/fonts/constantia
+          cp constantia_ci/*.ttf ~/.local/share/fonts/constantia/
+          fc-cache -fv
+          fc-list | grep -i constantia
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12" 
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install jupyter nbconvert[webpdf]
           playwright install chromium
@@ -37,6 +51,7 @@ jobs:
         with:
           root_file: PCPT_all.tex
           working_directory: tools/pdf_booklet
+          latexmk_use_xelatex: true
 
       - name: Create zip file          
         run: |

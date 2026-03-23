@@ -2,7 +2,7 @@ name: PCPT
 
 channels:
   - pytorch
-  - defaults
+  - nvidia
   - conda-forge
 
 dependencies:
