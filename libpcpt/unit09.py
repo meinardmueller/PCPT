@@ -77,7 +77,7 @@ def visualize_training_pairs(t, X, Y, n_rows=4, n_cols=6, title="First 24 Traini
         t = t.reshape(-1); assert t.shape[0] == L, "t must match sequence length."
 
     N_show = min(n_rows * n_cols, N)
-    fig, axs = plt.subplots(n_rows, n_cols, figsize=(6, 2.8), sharex=True, sharey=True)
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.5, 3.5), sharex=True, sharey=True)
     axs = axs.flatten()
 
     for n in range(N_show):
@@ -254,7 +254,7 @@ class NoveltyCurveDataset(Dataset):
     def __getitem__(self, idx):
         return self.X[idx], self.Y[idx]
 
-def plot_predection_example(x, yt, yp=None, yr=None, t=None, title="",
+def plot_prediction_example(x, yt, yp=None, yr=None, t=None, title="",
                  legend=True, ax=False, return_ax=False, figsize=(5, 1.8)):
     """
     Plot input x, target yt, optional prediction yp, and optional reference yr.
@@ -342,7 +342,7 @@ def plot_predection_example(x, yt, yp=None, yr=None, t=None, title="",
         # existing Axes passed in → no implicit show and no return
         return None
 
-def plot_predection_examples(examples, y_ref=None, label_title="", cols=3, cell_size=(3, 1.5)):
+def plot_prediction_examples(examples, y_ref=None, label_title="", cols=3, cell_size=(3.1, 1.5)):
     """
     Plot a grid of model prediction examples.
 
@@ -390,7 +390,7 @@ def plot_predection_examples(examples, y_ref=None, label_title="", cols=3, cell_
 
         title = f"{label_title} {label}".strip()
         # Uses your existing helper; it ignores figsize when an Axes is provided
-        plot_predection_example(xi, yi, ypi, yr=yr_panel, ax=ax, legend=False, title=title)
+        plot_prediction_example(xi, yi, ypi, yr=yr_panel, ax=ax, legend=False, title=title)
 
         r, c = divmod(i, cols)
         ax.tick_params(axis='x', labelbottom=(r == rows - 1), labelsize=8)
@@ -541,7 +541,7 @@ def plot_peaks_stem(
 ):
     """Thin curves; stems width=1; black ref dots slightly larger than red est dots."""
     assert (y_ref is not None) or (y_pred is not None), "Provide at least y_ref or y_pred"
-    fig, ax = (None, ax) if ax is not None else plt.subplots(figsize=(6, 1.5))
+    fig, ax = (None, ax) if ax is not None else plt.subplots(figsize=(6.2, 1.5))
 
     def _one(y, peaks, props, color, label, marker_size, stem_lw=1.0):
         if y is None: 
@@ -695,7 +695,7 @@ def exercise_recursive_impulse():
     Notebook: PCPT_09_recursion.ipynb
     """
     # === Part 1: Impulse responses for each filter type ===
-    print("=== Impulse responses for Echo, Smoothing, Change Detector, and Running Sum with Decay ===")
+    print("== Impulse responses for Echo, Smoothing, Change Detector, Running Sum with Dec. ==")
 
     # Impulse input
     x_imp = np.array([1, 0, 0, 0, 0, 0, 0], float)
@@ -708,7 +708,7 @@ def exercise_recursive_impulse():
     h_sum    = running_sum_decay(x_imp, r=0.8, length=length_out)
 
     # Plot responses
-    fig, axs = plt.subplots(2, 2, figsize=(6, 3.5))
+    fig, axs = plt.subplots(2, 2, figsize=(6.2, 3.5))
 
     plot_io(x_imp, h_echo,   title="Impulse Response: Echo",
             ax=axs[0, 0], xlim=(-0.5, length_out - 0.5), offset=0.1)
@@ -727,7 +727,7 @@ def exercise_recursive_impulse():
 
 
     # === Part 2: Change detector with different parameter settings ===
-    print("\n=== Change detector impulse responses for different (r, k) settings ===")
+    print("\n== Change detector impulse responses for different (r, k) settings ==")
 
     # Impulse input for change detector tests
     x_imp = np.zeros(length_out)
@@ -742,7 +742,7 @@ def exercise_recursive_impulse():
     ]
 
     # Compute and plot responses for each setting
-    fig, axs = plt.subplots(2, 2, figsize=(6, 3.5))
+    fig, axs = plt.subplots(2, 2, figsize=(6.2, 3.5))
     for ax, (r_val, k_val) in zip(axs.flat, params):
         h_change = change_detector_recursive(x_imp, r=r_val, k=k_val, length=length_out)
         plot_io(x_imp, h_change, f"Change Detector: r={r_val}, k={k_val}", ax=ax, offset=0.1)
@@ -790,8 +790,8 @@ def exercise_weighting_pos():
     print(f"epsilon = {eps}\n")
 
                 
-    print("sigma  | min_gap | n_peaks_range | seed | pos_frac |    pw_own | pw_from_loss | abs_diff ")
-    print("----------------------------------------------------------------------------------------")
+    print("sigma | min_gap | n_peaks_range | seed | pos_frac | pw_own | pw_from_loss | abs_diff")
+    print("------------------------------------------------------------------------------------")
 
     for cfg in settings:
         ds = NoveltyCurveDataset(
@@ -812,11 +812,11 @@ def exercise_weighting_pos():
 
         sigma_str = "None" if cfg["sigma"] is None else f"{cfg['sigma']:.1f}"
 
-        print(f"{sigma_str:6} | {cfg['min_gap']:7d} | {str(cfg['peaks']):13s} | "
-              f"{cfg['seed']:4d} | {pos_frac:8.4f} | {pw_own:9.2f} | {pw_from_loss:12.2f} | "
+        print(f"{sigma_str:5} | {cfg['min_gap']:7d} | {str(cfg['peaks']):13s} | "
+              f"{cfg['seed']:4d} | {pos_frac:8.4f} | {pw_own:6.2f} | {pw_from_loss:12.2f} | "
               f"{abs(pw_own - pw_from_loss):8.2e}")
 
-    print("\nNote: Differences between pw_own and pw_from_loss are due to different epsilon values used to avoid division by zero.")    
+    print("\nNote: Differences between pw_own and pw_from_loss are due to different epsilon \nvalues used to avoid division by zero.")    
     
  
 # ================================================
@@ -985,8 +985,8 @@ def train_SimpleTanhRNN_PRF(train_loader, val_loader, train_ds, val_ds,
 
         if (ep % print_every == 0) or ep == 1 or ep == epochs:            
             print(f"Ep {ep:2d} | T-L: {train_loss:.3f} | V-L: {val_loss:.3f} "
-                  f"| T-PRF: {train_P:.3f}/{train_R:.3f}/{train_F:.3f} "
-                  f"| V-PRF: {val_P:.3f}/{val_R:.3f}/{val_F:.3f}")
+                  f"| T-PRF: {train_P:.2f}/{train_R:.2f}/{train_F:.2f} "
+                  f"| V-PRF: {val_P:.2f}/{val_R:.2f}/{val_F:.2f}")
             model.eval()
             with torch.no_grad():
                 y_pred = torch.sigmoid(model(x_fix.unsqueeze(0)))[0, :, 0].numpy()
@@ -1017,7 +1017,7 @@ def exercise_training_prf():
     print("=============================================")
 
     print("train_ds = NoveltyCurveDataset(n_samples=200, seq_len=128, sigma_target=1.0, seed=0)")
-    print("val_ds  =  NoveltyCurveDataset(n_samples=100, seq_len=128, sigma_target=1.0, seed=1)")
+    print("val_ds  =  NoveltyCurveDataset(n_samples=100, seq_len=128, sigma_target=1.0, seed=1)\n")
 
     sample_idx = 2
     torch.manual_seed(0)
@@ -1067,7 +1067,7 @@ def exercise_training_prf():
     print("train_ds_mod = NoveltyCurveDataset(n_samples=200, seq_len=128, sigma_target=1.0,")
     print("    min_gap=6, n_peaks_range=(5, 8), noise_std=0.06, rise_len_rng=(2, 10), seed=0)")
     print("val_ds_mod = NoveltyCurveDataset(n_samples=100, seq_len=128, sigma_target=1.0,")
-    print("    min_gap=6, n_peaks_range=(5, 8), noise_std=0.06, rise_len_rng=(2, 10), seed=1)")
+    print("    min_gap=6, n_peaks_range=(5, 8), noise_std=0.06, rise_len_rng=(2, 10), seed=1)\n")
 
     torch.manual_seed(0)
     model, snapshots = train_SimpleTanhRNN_PRF(

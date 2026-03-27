@@ -13,8 +13,8 @@ def print_zip_url():
     """
     __version__ = Path("VERSION").read_text().strip()
     url = f"https://github.com/meinardmueller/PCPT/releases/download/v{__version__}/PCPT_{__version__}.zip"
-    border = "-" * (len(url) + 4)
+    border = "-" * (len(url))
     print(border)
-    print(f"| {url} |")
+    print(url)
     print(border)
     

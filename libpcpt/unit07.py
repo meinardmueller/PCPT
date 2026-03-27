@@ -31,7 +31,7 @@ def visualize_pairs_24(t, X, Y):
         Y (np.ndarray or Tensor): Label information, e.g. [class_id, frequency], shape [N, 2]
     """
     n_rows, n_cols = 4, 6
-    fig, axs = plt.subplots(n_rows, n_cols, figsize=(6, 2.8), sharex=True, sharey=True)
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.5, 3.5), sharex=True, sharey=True)
     axs = axs.flatten()
 
     for n in range(n_rows * n_cols):
@@ -83,7 +83,7 @@ def compute_and_plot_confusion_matrix(y_true, y_pred, class_names, title="Confus
 
     return cm
         
-def plot_signed_distance_vs_frequency(model, X_tensor, Y_tensor, Y_meta, bins, figsize=(5, 3)):
+def plot_signed_distance_vs_frequency(model, X_tensor, Y_tensor, Y_meta, bins, figsize=(6.2, 3)):
     """
     Evaluate model predictions and plot signed distance to class boundary vs. frequency.
 
@@ -141,7 +141,7 @@ def visualize_out_of_range_predictions(t, X, freqs, preds, probs=None, title="Ou
     Visualize waveforms and predictions for up to 8 out-of-range frequency inputs in a 2x4 layout.
     """
     n_rows, n_cols = 2, 4
-    fig, axs = plt.subplots(n_rows, n_cols, figsize=(8, 3), sharex=True, sharey=True)
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.5, 3), sharex=True, sharey=True)
     axs = axs.flatten()
 
     for i in range(min(8, len(X))):
@@ -380,7 +380,7 @@ def exercise_classification_FFT():
 
     # Example input shape: batch size = 32, channels = 1, signal length = 40
     print("\nModel summary using torchinfo.summary:\n")
-    print(summary(model, input_size=(32, 1, 40)))
+    print(summary(model, input_size=(32, 1, 40), col_width=20))
 
     # ----------------------------
     # 6. Training Loop
@@ -626,7 +626,7 @@ def exercise_pointcloud_classification():
     torch.manual_seed(0)
     model = SimpleMLP(input_dim=2, hidden_dim=32, num_classes=3)
     print("\nModel summary using torchinfo.summary:\n")
-    print(summary(model, input_size=(batch_size, 2)))    
+    print(summary(model, input_size=(batch_size, 2), col_width=20))    
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.01)
 

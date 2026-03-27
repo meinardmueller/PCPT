@@ -67,7 +67,7 @@ def exercise_activation_function():
     }
 
     # Create a figure with 2 rows and 2 columns
-    fig, axes = plt.subplots(2, 2, figsize=(6.5, 3.5))
+    fig, axes = plt.subplots(2, 2, figsize=(6.2, 3.5))
     axes = axes.flatten()  # flatten 2D array to 1D for easy iteration
 
     # Plot each activation function
@@ -195,11 +195,11 @@ def exercises_model_capacity():
 
     # --- Model summary ---
     print("\nModel summary (using torchinfo):")
-    print(summary(model, input_size=(1,)))
+    print(summary(model, input_size=(1,), col_width=20))
 
     # --- Training ---
     title = "Four-Layer Network"
-    print(f"\nTraining model: {title} | Activation: {act_fn.__class__.__name__} | Hidden dim: {dim_hidden} | Learning rate: {lr}")
+    print(f"\nTraining model: {title} | Activation: {act_fn.__class__.__name__} | Hidden dim: {dim_hidden} | Lr: {lr}")
     training_loop(num_iterations=8000, optimizer=optimizer, model=model, loss_fn=nn.MSELoss(), x_train=x, y_train=y)
 
     # --- Visualization ---
@@ -217,7 +217,7 @@ def exercises_model_capacity():
     plt.show()
 
     # --- Conclusion ---
-    print("\nConclusion: The model shows signs of overfitting: it fits the training data very well but the learned function is not a clean sinusoid. With 4 layers and 10 hidden units each, it has more capacity than necessary for this small dataset. As a result, it partially fits the noise in the data rather than capturing the underlying trend.")
+    print("\nConclusion: The model shows signs of overfitting: it fits the training data very \nwell but the learned function is not a clean sinusoid. With 4 layers and 10 hidden \nunits each, it has more capacity than necessary for this small dataset. As a result, \nit partially fits the noise in the data rather than capturing the underlying trend.")
 
 # ================================================
 # Exercise 3: exercise_optimization()

@@ -135,14 +135,17 @@ def plot_decision_boundary(dataset, model=None,
 
     ax.set_xlim(xlim_min, xlim_max)
     ax.set_ylim(ylim_min, ylim_max)
+    ax.set_xticks(np.arange(int(np.ceil(xlim_min)), int(np.floor(xlim_max)) + 1))
+    ax.set_yticks(np.arange(int(np.ceil(ylim_min)), int(np.floor(ylim_max)) + 1))
     ax.tick_params(labelsize=8)
     ax.grid(True)
+    ax.set_aspect("equal")
 
     if ax is None:
         plt.tight_layout()
         plt.show()
         
-def plot_loss_and_accuracy(train_loss, val_loss, train_acc, val_acc, best_epoch, figsize=(6.5, 2.2)):
+def plot_loss_and_accuracy(train_loss, val_loss, train_acc, val_acc, best_epoch, figsize=(6.2, 2.2)):
     """
     Plots training/validation loss and accuracy curves with best epoch marked.
 
@@ -182,7 +185,7 @@ def plot_loss_and_accuracy(train_loss, val_loss, train_acc, val_acc, best_epoch,
     plt.tight_layout()
     plt.show()
 
-def plot_boundary_and_loss_lr(dataset, model, train_loss, lr_history, title="Training Set", figsize=(7, 2.5)):
+def plot_boundary_and_loss_lr(dataset, model, train_loss, lr_history, title="Training Set", figsize=(6.0, 2.5)):
     """Plot decision boundary (left) and training loss with learning rate (right)."""
     fig = plt.figure(figsize=figsize, constrained_layout=True)
     gs = fig.add_gridspec(nrows=1, ncols=2, width_ratios=[1, 2])
@@ -361,7 +364,7 @@ def exercise_tiny_model():
     num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     # Print a layer-wise model summary 
     # Note: uses random input and changes the global random state
-    print(summary(model, input_size=(batch_size, 2)))    
+    print(summary(model, input_size=(batch_size, 2), col_width=20))    
     print(f"\nTrainable parameters: {num_params}")
     print(f"Note: There are better solutions with fewer number of parameters!!!")    
 
@@ -448,13 +451,13 @@ def exercise_random_seeds():
 
         # Print nicely formatted results
         print(f"Seed {seed}: "
-              f"Best Epoch={best_epoch}, "
-              f"TL={train_loss[best_epoch-1]:.4f}, TA={train_acc[best_epoch-1]:.2f}%, "
-              f"VL={val_loss[best_epoch-1]:.4f}, VA={val_acc[best_epoch-1]:.2f}%, "
-              f"TestL={test_loss:.4f}, TestA={test_acc:.2f}%")
+              f"BestEp={best_epoch}, "
+              f"TL={train_loss[best_epoch-1]:.3f}, TA={train_acc[best_epoch-1]:.1f}%, "
+              f"VL={val_loss[best_epoch-1]:.3f}, VA={val_acc[best_epoch-1]:.1f}%, "
+              f"TestL={test_loss:.3f}, TestA={test_acc:.1f}%")
 
         # Plot decision boundaries for this run
-        fig, axs = plt.subplots(1, 3, figsize=(7, 2.5))
+        fig, axs = plt.subplots(1, 3, figsize=(6.2, 2.5))
         plot_decision_boundary(dataset_train, model=model, ax=axs[0], title="Training Set")
         plot_decision_boundary(dataset_val,   model=model, ax=axs[1], title="Validation Set")
         plot_decision_boundary(dataset_test,  model=model, ax=axs[2], title="Test Set")
@@ -513,7 +516,7 @@ def exercise_schedulers():
     }
 
     # --- Plot ---
-    fig, axs = plt.subplots(len(scheduler_configs), 3, figsize=(7, 7), sharex=True, sharey=True)
+    fig, axs = plt.subplots(len(scheduler_configs), 3, figsize=(6.2, 7), sharex=True, sharey=True)
 
     for row_idx, (sched_name, configs) in enumerate(scheduler_configs.items()):
         for col_idx, config in enumerate(configs):

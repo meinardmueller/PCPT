@@ -173,7 +173,7 @@ def plot_loss_matrix(names, M, ax, title="", cmap="magma"):
     cb.ax.tick_params(labelsize=8)
 
 # --- Plot all signals (overlay) ---
-def plot_six_signals(signals, L, figsize=(6, 2.5)):
+def plot_six_signals(signals, L, figsize=(6.2, 2.5)):
     """Overlay plot of all signals with varied markers and line widths."""
     plt.figure(figsize=figsize)
     markers = ['o', '+', 'x', 's', '^', 'D']
@@ -228,7 +228,7 @@ def exercise_bn_running_stats():
         true_mean, true_var = X.mean().item(), X.var(unbiased=False).item()
         res = {m: run_bn(X, momentum=m, bs=bs, epochs=epochs) for m in momenta}
 
-        fig, axs = plt.subplots(1, 3, figsize=(7, 1.6), constrained_layout=True)
+        fig, axs = plt.subplots(1, 3, figsize=(6.0, 1.6), constrained_layout=True)
         # left: histogram
         axs[0].hist(X.numpy().ravel(), bins=40, color="gray")
         axs[0].set_title(f"Dataset ({kind} Case)", fontsize=8)
@@ -253,7 +253,7 @@ def exercise_bn_running_stats():
         true_mean, true_var = X.mean().item(), X.var(unbiased=False).item()
         res = {bs: run_bn(X, momentum=momentum, bs=bs, epochs=epochs) for bs in bss}
 
-        fig, axs = plt.subplots(1, 3, figsize=(7, 1.6), constrained_layout=True)
+        fig, axs = plt.subplots(1, 3, figsize=(6.0, 1.6), constrained_layout=True)
         # left: histogram
         axs[0].hist(X.numpy().ravel(), bins=40, color="gray")
         axs[0].set_title(f"Dataset ({kind} Case)", fontsize=7)
@@ -286,7 +286,8 @@ def exercise_bn_running_stats():
         "  so the running statistics look zigzaggy.\n"
         "* At the same time, more batches per epoch mean more updates, so the statistics\n"
         "  adapt faster even with the same momentum.\n"
-        "* Large batches give smoother but fewer updates, making convergence steadier but slower.\n"
+        "* Large batches give smoother but fewer updates, making convergence steadier but\n"
+        "  slower.\n"
         "* In practice, BatchNorm works best with reasonably large batches that balance\n"
         "  stability and adaptability."
     )
@@ -337,7 +338,7 @@ def exercise_dropout_masks():
         clim_out = (0.0, 1.0 / (1.0 - p))
 
         # --- Plot only this row (3 panels) ---
-        fig, axs = plt.subplots(1, 3, figsize=(7, 1.6), constrained_layout=True)
+        fig, axs = plt.subplots(1, 3, figsize=(6, 1.6), constrained_layout=True)
         show(axs[0], X,    "Input X",               cm,      clim_in)
         show(axs[1], mask, f"Dropout Mask (p={p})", "gray_r", (0, 1))
         show(axs[2], Y,    "After Dropout",         cm,      clim_out)
@@ -366,7 +367,7 @@ def spectral_l2_fft(y_pred, y_target, n_fft=None):
     
 def plot_conv_result(x, y_target, y_est, h_est, h_true=None,
                      loss_curve=None, loss_name="Loss",
-                     figsize=(7, 1.6), show_legend=None):
+                     figsize=(6, 1.6), show_legend=None):
     """
     Plot: [loss curve] | [x] | [kernels] | [y_est vs y_target]
 

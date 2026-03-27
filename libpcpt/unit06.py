@@ -51,7 +51,7 @@ def visualize_pairs_24(t, X, Y):
         Y (np.ndarray or Tensor): Clean signals, shape (N, len_signal) or (N, 1, len_signal)
     """
     n_rows, n_cols = 4, 6
-    fig, axs = plt.subplots(n_rows, n_cols, figsize=(6, 2.8), sharex=True, sharey=True)
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.5, 3.5), sharex=True, sharey=True)
     axs = axs.flatten()
     for n in range(n_rows * n_cols):
         x = X[n]
@@ -87,7 +87,7 @@ def visualize_further_examples_6(t, X, Y, Y_pred):
         Y_pred (np.ndarray): Model-predicted signals, shape (N, len_signal)
     """
     n_rows, n_cols = 2, 3
-    fig, axs = plt.subplots(n_rows, n_cols, figsize=(6, 2.8), sharex=True, sharey=True)
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(7.0, 3.0), sharex=True, sharey=True)
     axs = axs.flatten()
 
     for n in range(n_rows * n_cols):
@@ -152,7 +152,7 @@ def exercise_convolution_smooth_edge():
     print("* The edge detector reacts to abrupt changes")
     print("  (e.g., when the signal rises from 0 to 8).")
     print("* Zero-padding can cause edge boundary artifacts")
-    print(" (e.g., spurious negative values at the end).")
+    print("  (e.g., spurious negative values at the end).")
     
 # ================================================
 # Exercise 2: exercise_conv1d_parameters()

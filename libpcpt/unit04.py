@@ -146,13 +146,15 @@ def exercise_learning_rate():
     
     print('\nObservations / Conclusions:')
     print('* Very large learning rates (e.g., 1e+0) can cause divergence or instability.')
-    print('* Moderate rates (e.g., 1e-1) may converge fast but risk overshooting or oscillating.')
+    print('* Moderate rates (e.g., 1e-1) may converge fast but risk overshooting or')
+    print('  oscillating.')
     print('* Small rates (e.g., 1e-2) often ensure stable and effective convergence.')
     print('* Very small rates (e.g., 1e-3) are stable but slow, requiring many iterations.')
     print('* Choosing a suitable learning rate balances speed and stability.')
     print('* Gradient descent can closely match the closed-form solution if well-tuned.')
-    print('* Note that what counts as a small or large learning rate depends on the model, data, and optimization')
-    print('  landscape. For some problems, even 1e-3 may be too high, while for others it may be too low.')
+    print('* Note that what counts as a small or large learning rate depends on the model, ')
+    print('  data, and optimization landscape. For some problems, even 1e-3 may be too high,')
+    print('  while for others it may be too low.')
 
 # ================================================
 # Exercise 2: exercise_gradient_accumulation()
@@ -206,7 +208,7 @@ def exercise_gradient_accumulation():
     print("\n") 
 
     # Plot parameter trajectories
-    plt.figure(figsize=(7, 2.5))
+    plt.figure(figsize=(6.2, 2.5))
 
     plt.subplot(1, 2, 1)
     plt.plot(a_accum, label='a (accumulated)', marker='o', markersize=4)

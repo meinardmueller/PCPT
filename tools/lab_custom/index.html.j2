@@ -31,10 +31,18 @@
     .dataframe,
     .dataframe td,
     .dataframe th {
-        font-size: 9pt !important;    
+        font-size: 9pt !important;
         line-height: 1.2 !important;    /* tighter spacing */
         text-align: left !important;
         vertical-align: middle !important;
+    }
+
+    /* Keep inline code at code default size inside table cells */
+    .jp-RenderedHTMLCommon td code,
+    .jp-RenderedHTMLCommon th code,
+    .dataframe td code,
+    .dataframe th code {
+        font-size: 7.5pt !important;
     }
 
     /* Header font sizes */
@@ -119,6 +127,22 @@
     /* Keep headings left-aligned */
     h1, h2, h3, h4 {
         text-align: left !important;
+    }
+
+    /* Prevent orphan headers at page bottom */
+    h1, h2, h3, h4, h5, h6 {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    /* Repeat padding/background on each page fragment when a div breaks */
+    .jp-RenderedHTMLCommon div,
+    .jp-CodeCell .jp-Cell-inputWrapper,
+    .jp-CodeCell .jp-InputArea,
+    .jp-CodeCell .jp-InputArea-editor,
+    .jp-CodeCell pre {
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
     }
 
     /* Keep code blocks non-justified */
