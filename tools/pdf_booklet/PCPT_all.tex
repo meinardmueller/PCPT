@@ -1,5 +1,4 @@
 \documentclass[a4paper,11pt,twoside]{article}
-%\renewcommand{\familydefault}{\sfdefault}      % sans serif font
 
 % -------------------------------------------------
 % Packages
@@ -26,8 +25,6 @@
 \renewcommand{\footrulewidth}{0pt}
 
 % Set header and footer
-%\geometry{margin=2.5cm}
-
 \geometry{
   a4paper,
   twoside,
@@ -45,9 +42,8 @@
 \setlength{\marginshift}{3.5mm} 	% (32mm - 25mm) / 2
 
 \fancyhf{} 				   			% Clear all header and footer fields
-%\fancyhead[LE, RO]{\thepage}		% Outer edges: page number
-\fancyhead[RE]{PCPT}				% Even pages, inner side
-\fancyhead[LO]{\rightmark}  		% Odd pages, inner side: section title
+\fancyhead[LE]{PCPT}				% Even pages, outer side
+\fancyhead[RO]{\rightmark}  		% Odd pages, outer side: section title
 \fancyfoot[LE, RO]{\thepage}		% Outer edges: page number
 
 % TOC dots for sections
@@ -55,17 +51,18 @@
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 % -------------------------------------------------
-% Makro for including pdfs 
+% Macro for including pdfs 
 % -------------------------------------------------
 \newcommand{\pdfsection}[3]{%
  	\pagestyle{empty}
   	\cleardoublepage
   	\pagestyle{fancy}
+  	\addcontentsline{toc}{section}{#1}
+  	\markright{#1}
   	\includepdf[
     	pages=-,
     	offset={\the\marginshift} 0pt,
     	pagecommand={\thispagestyle{fancy}},
-    	addtotoc={1,section,1,#1,#2},
     	scale=1,
   	]{#3}%
 }
@@ -84,17 +81,22 @@
 \cleardoublepage
 \pagenumbering{arabic}
 \setcounter{page}{1}
-%\renewcommand{\contentsname}{\sffamily Contents \\}
 \renewcommand{\contentsname}{Contents \\}
 
-%\sffamily\tableofcontents
 \tableofcontents
 \pagestyle{empty}
 \newpage
 
-% ---------------- Include PDFs ----------------
-\setcounter{section}{-1}
+% ---------------- Preface ----------------
+\cleardoublepage
+\pagestyle{fancy}
+\addcontentsline{toc}{section}{Preface}
+\markright{Preface}
+\input{preface}
+\cleardoublepage
+\pagestyle{empty}
 
+% ---------------- Include PDFs ----------------
 \pdfsection{Introduction}{intro}{../../PCPT.pdf}
 \pdfsection{Unit 1: Get Started}{getstarted}{../../PCPT_01_getstarted.pdf}
 \pdfsection{Unit 2: Python Classes}{classes}{../../PCPT_02_classes.pdf}

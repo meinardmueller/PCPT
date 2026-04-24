@@ -534,7 +534,7 @@ def exercise_schedulers():
             ax.plot(range(1, epochs + 1), lrs, marker='o', markersize=2.5)
             ax.set_ylim(bottom=0, top=base_lr+0.01)  # Keep y-limit consistent
 
-            param_str = ", ".join(f"{k}={fmt(v)}" for k, v in config.items() if k != "last_epoch")
+            param_str = ", ".join(f"{k}={fmt(v)}" for k, v in config.items() if k != "last_epoch" and k != "total_steps")
             ax.set_title(f"{sched_name}\n{param_str}", fontsize=7)
             ax.set_xlabel("Epoch", fontsize=7)
             ax.set_ylabel("LR", fontsize=7)

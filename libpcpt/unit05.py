@@ -319,7 +319,7 @@ def plot_himmelblau_trajectories(trajectories, cmap='gray', xlim=(-6, 6), ylim=(
     norm = mcolors.LogNorm(vmin=Z.min() + 1e-2, vmax=Z.max())
 
     # Plot
-    plt.figure(figsize=(5, 3))
+    plt.figure(figsize=(6, 3.6))
     im = plt.imshow(Z, extent=[-6, 6, -6, 6], origin='lower', cmap=cmap, norm=norm, aspect='auto')
     im.set_clim(vmax=500)  # set upper color limit
     cbar = plt.colorbar() 
