@@ -77,26 +77,27 @@
 \pagestyle{empty}
 \newpage
 
+% ---------------- Preface ----------------
+\cleardoublepage
+\pagenumbering{roman}
+\setcounter{page}{1}
+\pagestyle{fancy}
+\markright{Preface}
+\input{preface}
+
 % ---------------- Table of Contents ----------------
 \cleardoublepage
-\pagenumbering{arabic}
-\setcounter{page}{1}
 \renewcommand{\contentsname}{Contents \\}
-
+\markright{}
 \tableofcontents
+\thispagestyle{fancy}
 \pagestyle{empty}
 \newpage
 
-% ---------------- Preface ----------------
-\cleardoublepage
-\pagestyle{fancy}
-\addcontentsline{toc}{section}{Preface}
-\markright{Preface}
-\input{preface}
-\cleardoublepage
-\pagestyle{empty}
-
 % ---------------- Include PDFs ----------------
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \pdfsection{Introduction}{intro}{../../PCPT.pdf}
 \pdfsection{Unit 1: Get Started}{getstarted}{../../PCPT_01_getstarted.pdf}
 \pdfsection{Unit 2: Python Classes}{classes}{../../PCPT_02_classes.pdf}
