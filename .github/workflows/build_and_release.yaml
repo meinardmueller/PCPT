@@ -52,10 +52,11 @@ jobs:
           root_file: PCPT_all.tex
           working_directory: tools/pdf_booklet
           latexmk_use_xelatex: true
+          post_compile: "pdfjam --papersize '{17cm,24cm}' PCPT_all.pdf -o PCPT_all_17-24.pdf"
 
       - name: Create zip file          
         run: |
-          cp tools/pdf_booklet/PCPT_all.pdf ./PCPT_all.pdf
+          cp tools/pdf_booklet/PCPT_all_17-24.pdf ./PCPT_all.pdf
           ZIP_NAME="PCPT_${{ steps.get_version.outputs.version }}.zip"
           zip "$ZIP_NAME" -@ < <(git ls-files; ls *.html; ls *.pdf)
 
